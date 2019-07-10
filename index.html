@@ -8,12 +8,22 @@
 </head>
 <body>
     <div id="app">
-       <div>
-           <h1>{{ titulo | uppercase }}</h1>
-           <h2>{{ subtitulo | capitalize }}</h2>
+       <input type="text" name="nombre" v-model="nombre">
+       <p>Tu nombreen mayusculas es: {{ nombre | uppercase }}</p>
 
-       </div>
-            
+       <h2>Cuales son tus cursos favoritos?</h2>
+       <form v-on:submit.prevent="submit" action="" method="GET">
+           <input v-model="cursos" type="checkbox" id="vue" value="vue">
+           <label for="vue">Curso de Vue.js</label>
+           <input v-model="cursos" type="checkbox" id="seo" value="seo">
+           <label for="seo">Curso de SEO</label>
+           <input v-model="cursos" type="checkbox" id="mongo" value="mongo">
+           <label for="mongo">Curso do MongoDB</label>
+           <input v-model="cursos" type="checkbox" id="react" value="react">
+           <label for="react">Curso do React</label>
+           <button type="submit">Enviar</button>
+       </form> 
+       
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,8 +31,8 @@
         let app = new Vue({
             el: '#app',
             data: {
-                titulo: 'Estas en Platzi',
-                subtitulo: 'curso de vue.js'
+                nombre: '',
+                cursos: []
             },
             filters: {
                 uppercase: function (str) {
@@ -34,7 +44,13 @@
                 capitalize: function (str) {
                     return str.charAt(0).toUpperCase() + str.slice(1);
                 }
-            }
+            },
+            methods: {
+                submit: function () {
+                    console.log('Se ejecuta el metodo submit');
+                    console.log(this.cursos);
+                }
+            },
         })
     </script>
 </body>
