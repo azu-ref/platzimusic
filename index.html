@@ -8,9 +8,16 @@
 </head>
 <body>
     <div id="app">
-        Hola {{ nombre }}
-        <a :href="url" target="_blank">Google</a>
+        <template v-if="mostrar">
+            <h1>titulo</h1>
+            <h2>subtitulo</h2>
+            <a :href="url" target="_blank">Google</a>
+        </template>
+        <div v-show="mostrar"><p>Hola</p></div>
+        <div v-show="!mostrar"><p>Esto esta oculto</p></div>
     </div>
+    <!-- es recomendable usar v-if para una primera carga y para la interaccion con el usuario
+    , para ocultar y mostrar elementos es mejor usar v-show-->
     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
@@ -18,7 +25,8 @@
             el: '#app',
             data: {
                 nombre: 'Fernando',
-                url: "https://google.com"
+                url: "https://google.com",
+                mostrar: true
             }
         })
     </script>
